@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import Login from './Components/login'
+import Login from './Components/Login'
 import Main from './Components/Main'
-import Search from './Components/Search'
+import Post from './Components/Post'
+import Locations from './Components/Locations'
+import Header from './Components/NavBar'
+import Footer from './Components/Footer'
 
 
 import './App.css';
@@ -48,12 +51,13 @@ class App extends Component {
     return (
     <div className="App">
     {this.state.logged ? <Main username={this.state.username}/> : <Login login={this.login}/>}
-    <h1>Contry Search</h1>
+    <Locations/>
+    <h1>Country Search</h1>
     <form onSubmit={this.onSubmit}>
       <input value={this.state.term} onChange={this.onChange} />
       <button>Submit</button>
     </form>
-    <ToDo items={this.state.items} deleteItem = {this.deleteItem}/>
+    <Post items={this.state.items} deleteItem = {this.deleteItem}/>
     </div>
   );
 }
