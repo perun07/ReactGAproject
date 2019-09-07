@@ -39,10 +39,17 @@ router.get('/', async (req,res, next) => {
 })
 
 const locationsController = require('./controllers/locationsController');
+const favoritesController = require('./controllers/favoritesController');
+const articlesController = require('./controllers/articlesController');
+const locations = await fetch ('http:localhost:9000/api/vi/locations')
+const locations = await fetch ('http:localhost:9000/api/vi/locations')
 const locations = await fetch ('http:localhost:9000/api/vi/locations')
 const locationsJson = await locations.json()
+const locationsJson = await locations.json()
+const locationsJson = await locations.json()
 
-app.use('/api/v1/employee', locationsController);
+
+app.use('/api/v1/location', locationsController);
 
 app.listen(process.env.PORT || 9000, () => {
   console.log('listening on port 9000');

@@ -50,9 +50,9 @@ class App extends Component {
     
     return (
     <div className="App">
+    <h1>Country Search</h1>
     {this.state.logged ? <Main username={this.state.username}/> : <Login login={this.login}/>}
     <Locations/>
-    <h1>Country Search</h1>
     <form onSubmit={this.onSubmit}>
       <input value={this.state.term} onChange={this.onChange} />
       <button>Submit</button>

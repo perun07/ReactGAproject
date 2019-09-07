@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
 
 
-const employeeSchema = new mongoose.Schema({
-  name: String,
-  position: String,
-  birthDate: Date,
-  department: String,
-  annualSalary: String
+const LocationSchema = new mongoose.Schema({
+  country: String,
+  city: String, 
 });
 
-module.exports = mongoose.model('Employee', employeeSchema);
+module.exports = mongoose.model('Location', LocationSchema);
