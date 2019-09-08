@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LocationsList from './LocationList'
-// import { log } from 'util';
+import AddLocation from "./AddLocation"
+
 
 class Locations extends Component {
     constructor(){
@@ -12,6 +13,43 @@ class Locations extends Component {
     componentDidMount(){
         console.log('component is mounted');
         this.getLocations()
+    }
+
+    deleteLocation = async (id) => {
+        console.log(id);
+        try{
+            const deleteLocation = await fetch (`http://localhost:9000/api/v1/locations/${id}`,{
+            method: 'DELETE'
+        })
+        const locationsParsed = await deleteLocation.json()
+        } catch(err){
+            console.log(err);
+            
+        }
+        
+    }
+
+    createLocation = async (formData) => {
+        console.log(formData);
+        
+        try{
+            const addLocation = await fetch('http://localhost:9000/api/v1/locations', {
+                method: "POST",
+                body: JSON.stringify(formData), 
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const locationsParsed = await addLocation.json()
+            if(locationsParsed.status.code === 200){
+                this.setState({
+                    locations:[...this.state.locations]
+            })
+        }
+        } catch(err){
+
+        }
+        
     }
 
     getLocations = async ()=>{
@@ -38,8 +76,8 @@ class Locations extends Component {
         return (
             <div>
                 <h1>Travel Locations</h1>
-                <LocationsList locations={this.state.locations}/>
-                {console.log(this.state.locations)}
+                <AddLocation createLocation = {this.createLocation}/>
+                <LocationsList locations={this.state.locations} deleteLocation={this.deleteLocation}/>
                 
             </div>
         )
