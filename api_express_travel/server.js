@@ -4,6 +4,7 @@ const bodyParser     = require('body-parser');
 const cors           = require('cors');
 const session        = require('express-session')
 
+
 require('./db/db');
 
 
@@ -24,32 +25,27 @@ const corsOptions = {
   optionsSuccessStatus: 200 
 }
 
-app.use(cors(corsOptions));
+app.use(cors({
+  credentials: true
+}
+));
 
-router.get('/', async (req,res, next) => {
-  try {
-    const allLocations = await locations.find();
-    res.json({
-      status:200,
-      data: allLocations
-    })
-  } catch (err){
-    res.send(err)
-  }
+app.use((req, res, next)=>{
+  console.log(req.session.user);
+  next()
 })
 
+
+
 const locationsController = require('./controllers/locationsController');
-const favoritesController = require('./controllers/favoritesController');
 const articlesController = require('./controllers/articlesController');
-const locations = await fetch ('http:localhost:9000/api/vi/locations')
-const locations = await fetch ('http:localhost:9000/api/vi/locations')
-const locations = await fetch ('http:localhost:9000/api/vi/locations')
-const locationsJson = await locations.json()
-const locationsJson = await locations.json()
-const locationsJson = await locations.json()
+const usersController = require('./controllers/usersController');
 
 
-app.use('/api/v1/location', locationsController);
+
+app.use('/api/v1/locations', locationsController);
+app.use('/api/v1/article', articlesController);
+app.use('/api/v1/users', usersController)
 
 app.listen(process.env.PORT || 9000, () => {
   console.log('listening on port 9000');

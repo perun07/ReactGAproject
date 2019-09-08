@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Favorites = require('../models/favorites');
+const Locations = require('../models/locations');
 
  router.get('/', async (req, res, next) => {
   console.log(req.body, ' this is get all')

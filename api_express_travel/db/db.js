@@ -1,9 +1,6 @@
-// This is where we will set up our db connection
 const mongoose = require('mongoose');
 
-// food is the name of our database
-// that is automatically created
-mongoose.connect('mongodb://localhost/employees', {
+mongoose.connect('mongodb://localhost/locations', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false

@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-
-
 const ArticlesSchema = new mongoose.Schema({
   title: String,
   body: String,
@@ -17,5 +15,18 @@ ArticlesSchema.methods.toJson = function (){
         timeUpdated: this.timeUpdated,
     }
 }
+
+// router.get('/', (req,res)=>{
+//   if(req.session.logged){
+//     ArticlesSchema.find({}, (err, foundArticles)=>{
+//       res.render('/', {
+//         //redirect to the articcles homepage
+//         articles: foundArticles
+//       })
+//     })
+//   } else{
+//     res.redirect('/sessions/login')
+//   }
+// })
 
 module.exports = mongoose.model('Articles', ArticlesSchema);
