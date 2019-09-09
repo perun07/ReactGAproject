@@ -6,7 +6,7 @@ function LocationsList(props){
             <li key={location._id}>
             <h3>{location.city}, {location.country}</h3>
             <button onClick={()=>{
-                props.deleteLocation(locations._id)
+                props.deleteLocation(location._id)
             }}>Delete</button>
             </li>
         )

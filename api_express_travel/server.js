@@ -14,6 +14,11 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use((req,res,next)=>{
+  console.log(req.session.user);
+  next()
+})
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -26,12 +31,13 @@ const corsOptions = {
 }
 
 app.use(cors({
-  credentials: true
+  credentials: true,
+  origin: 'http://localhost:3000'
 }
 ));
 
 app.use((req, res, next)=>{
-  console.log(req.session.user);
+  console.log(req.session.userId);
   next()
 })
 
@@ -45,7 +51,7 @@ const usersController = require('./controllers/usersController');
 
 app.use('/api/v1/locations', locationsController);
 app.use('/api/v1/article', articlesController);
-app.use('/api/v1/users', usersController)
+app.use('/users', usersController)
 
 app.listen(process.env.PORT || 9000, () => {
   console.log('listening on port 9000');

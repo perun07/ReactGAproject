@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
   try {
     console.log(req.body, ' this is req.body');
     console.log(req.session, ' req.session in post route')
+    req.body.user = req.session.userID
     const createdLocations = await Locations.create(req.body);
     
     res.json({

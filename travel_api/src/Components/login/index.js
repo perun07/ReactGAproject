@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import Register from './Register/Register'
 
 class Login extends Component {
     constructor(){
     super()
     this.state = {
-        username: '',
-        password: '',
+        username: null,
+        password: null,
+        email: null
     }
     }
 
@@ -21,13 +23,14 @@ class Login extends Component {
 
     render(){
         return(
-            <div><h1>Login</h1>
+            <div><h1>Register as a new User</h1>
             
-        <form onSubmit={this.handleSubmit}>
+        {/* <form onSubmit={this.handleSubmit}>
             <input type='text' name='username' placeholder='username' value = {this.state.username} onChange={this.handleChange}/>
             <input type = 'password' name= "password" placeholder="password" value = {this.state.password} onChange={this.handleChange}/>
             <input type = 'submit' value='Submit'/>
-        </form>
+        </form> */}
+        <Register handleRegister={this.props.handleRegister}/>
         </div>
     )
     }

@@ -8,13 +8,14 @@ import Footer from './Components/Footer'
 
 
 import './App.css';
+import { log } from 'util';
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      logged:false,
-      username: '', 
+      loggedIn:false,
+      username: null, 
       terms:'',
       items: [],
     }
@@ -44,22 +45,40 @@ class App extends Component {
       items: this.state.items.filter((items,i)=>i!==index)
     })
   }
+
+  handleRegister = async (formData) =>{
+    console.log("Registered");
+    console.log(formData);
+    const registerResponse = await fetch("http://localhost:9000/users/register" ,{
+      method: "POST",
+      body: JSON.stringify(formData),
+      credentials: "include",
+      headers: {
+        "Content-Type": "applications/json"
+      }
+    })
+      const parsedResponse = await registerResponse.json()
+      console.log(parsedResponse)
+      if(parsedResponse.status.code === 201){
+        console.log('Successful Registration');
+        
+      }
+    }
   
   render(){
-    console.log(this.state);
-    
     return (
     <div className="App">
-    <h1>Country Search</h1>
-    {this.state.logged ? <Main username={this.state.username}/> : <Login login={this.login}/>}
-    <Locations/>
-    <form onSubmit={this.onSubmit}>
-      <input value={this.state.term} onChange={this.onChange} />
-      <button>Submit</button>
-    </form>
-    <Post items={this.state.items} deleteItem = {this.deleteItem}/>
-    </div>
-  );
+      {
+    this.state.loggedIn ?
+    <Locations/> 
+    :
+    <Login handleRegister={this.handleRegister}/>
+      }
+      </div>
+    );
 }
 }
+
 export default App;
+
+

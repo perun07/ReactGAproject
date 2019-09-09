@@ -19,9 +19,21 @@ class Locations extends Component {
         console.log(id);
         try{
             const deleteLocation = await fetch (`http://localhost:9000/api/v1/locations/${id}`,{
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: "include"
         })
         const locationsParsed = await deleteLocation.json()
+        if(locationsParsed.status.code === 200){
+            this.setState({
+                locations:this.state.locations.filter(function(locations){
+                    if(locations._id === id){
+                        return false;
+                    }else{
+                        return true
+                    }
+                })
+            })
+        }
         } catch(err){
             console.log(err);
             
@@ -36,14 +48,17 @@ class Locations extends Component {
             const addLocation = await fetch('http://localhost:9000/api/v1/locations', {
                 method: "POST",
                 body: JSON.stringify(formData), 
+                credentials: "include",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 }
             })
             const locationsParsed = await addLocation.json()
-            if(locationsParsed.status.code === 200){
+            console.log(locationsParsed);
+            
+            if(locationsParsed.status.code === 201){    
                 this.setState({
-                    locations:[...this.state.locations]
+                    locations:[...this.state.locations, locationsParsed.data]
             })
         }
         } catch(err){
@@ -72,6 +87,16 @@ class Locations extends Component {
             
         }
     }
+
+    // updateLocations = async()=>{
+    //     try{
+    //         const updateLocation = await fetch(`http://localhost:9000/api/v1/locations/${id}`, {
+    //             method: "PUT",
+    //             body: JSON.stringify(formData),
+
+    //         })
+    //     }
+    // }
     render(){
         return (
             <div>
