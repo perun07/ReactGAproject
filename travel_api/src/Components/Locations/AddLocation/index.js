@@ -1,11 +1,15 @@
 import React, { Component } from  'react'
+import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class AddLocation extends Component {
     constructor(){
         super()
         this.state = {
             country: "",
-            city: ""
+            state: "",
+            city: "",
+            post: ""
         }
     }
     handleChange = (e) => {
@@ -22,15 +26,28 @@ class AddLocation extends Component {
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                <h4>Add a Location</h4>
-                <label htmlFor= "city">City:</label>
-                <input type = "text" name = "city" onChange = {this.handleChange}/>
-                <br></br>
-                <label htmlFor="country">Country</label>
-                <input type = "text" name = "country" onChange = {this.handleChange}></input>
-                <input type="submit" value="Add a Location" />
-            </form>
+            <Container>
+            <Form onSubmit={this.handleSubmit}>
+                <h2>Add Your Location To Blog About</h2>
+                <FormGroup row>
+                <Label for= "city">City:</Label>
+                <Input type = "text" name = "city" placeholder="this is a placeholder" onChange = {this.handleChange}/>
+                </FormGroup>
+                <FormGroup row>
+                <Label for= "state">State:</Label>
+                <Input type = "text" name = "state" onChange = {this.handleChange}/>
+                </FormGroup>
+                <FormGroup row>
+                <Label for="country">Country:</Label>
+                <Input type = "text" name = "country" onChange = {this.handleChange}></Input>
+                </FormGroup>
+                <FormGroup row>
+                <Label for = "post">Blog Post:</Label>
+                <Input type = 'text' name = 'post' onChange = {this.handleChange}></Input>
+                <Button type="submit" color="primary">Add a Location</Button>
+                </FormGroup>
+            </Form>
+            </Container>
         )
     }
 }

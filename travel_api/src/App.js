@@ -5,6 +5,7 @@ import Post from './Components/Post'
 import Locations from './Components/Locations'
 import Header from './Components/NavBar'
 import Footer from './Components/Footer'
+import { Button, Form, FormGroup, Label, Input, FormText  } from 'reactstrap';
 
 
 import './App.css';
@@ -51,7 +52,6 @@ class App extends Component {
   handleRegister = async (formData) =>{
     console.log("Registered");
     console.log(formData);
-    //check
     const registerResponse = await fetch("http://localhost:9000/api/v1/users/register" ,{      
     method: "POST",
       body: JSON.stringify(formData),
@@ -59,8 +59,10 @@ class App extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-      //check
     })
+
+    //add handlelogout function if time. Include button on locations page//
+
       const parsedResponse = await registerResponse.json()
       console.log(parsedResponse)
       if(parsedResponse.status.code === 201){

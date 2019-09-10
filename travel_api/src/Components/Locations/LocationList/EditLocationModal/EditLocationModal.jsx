@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 
 class EditLocationModal extends Component {
   constructor(props) {
@@ -7,7 +7,9 @@ class EditLocationModal extends Component {
     this.state = {
       modal: false,
       country: '',
-      city: ''
+      state:'',
+      city: '',
+      post: ''
     };
 
     this.toggle = this.toggle.bind(this);
@@ -36,18 +38,24 @@ handleSubmit = (e) => {
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}Edit</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit Location Blog Post</ModalHeader>
           <ModalBody>
               <div>
-              <form onSubmit={this.handleSubmit}>
-                <h4>Edit Location information</h4>
+              <Form onSubmit={this.handleSubmit}>
+                <h4>Change Info Below</h4>
                 <label htmlFor='city'>Edit City:</label>
-                <input type='text' name='city' placeholder='Location City' onChange={this.handleChange} />
+                <input type='text' name='city' placeholder='City' onChange={this.handleChange} />
+                <br></br>
+                <label htmlFor='state'>Edit State:</label>
+                <input type='text' name='state' placeholder='State' onChange={this.handleChange} />
                 <br></br>
                 <label htmlFor='country'>Edit Country:</label>
-                <textarea name='country' placeholder='Country Name Here' onChange={this.handleChange}></textarea>
-                <input type='submit' value='edit a location' />
-            </form>
+                <input type="text" name='country' placeholder='Country' onChange={this.handleChange}></input>
+                <br></br>
+                <label htmlFor='post'>Edit Blog:</label>
+                <input type="text" name='post' placeholder="Edit Post"onChange={this.handleChange}></input>
+                <Button color="secondary" type='submit'>Edit Post</Button>
+            </Form>
               </div>
           </ModalBody>
         </Modal>

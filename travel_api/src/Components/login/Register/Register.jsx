@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { log } from 'util'
+import { Jumbotron, Button, Form, Input, Spinner } from 'reactstrap';
 
 class Register extends Component {
     constructor(){
@@ -26,12 +26,23 @@ class Register extends Component {
     }
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                username: <input type = "text" name="username" onChange={this.handleChange}/>
-                password: <input type = "text" name="password" onChange={this.handleChange}/>
-                email: <input type = "text" name="email" onChange={this.handleChange}/>
-                <input type = "submit" value="Register"/>
-            </form>
+            <div>
+            <Jumbotron>
+            <Spinner color="primary" />
+            <Spinner color="secondary" />
+            <Spinner color="success" />
+            <Spinner color="danger" />
+            <Spinner color="warning" />
+            <Spinner color="info" />
+            <Spinner color="dark" />
+            <Form onSubmit={this.handleSubmit}>
+                username: <Input type = "text" name="username" onChange={this.handleChange}></Input>
+                password: <Input type = "text" name="password" onChange={this.handleChange}></Input>
+                email: <Input type = "text" name="email" onChange={this.handleChange}></Input>
+                <Button color="secondary" type = "submit" >Register</Button>
+            </Form>
+            </Jumbotron>
+            </div>
         )
     }
 }

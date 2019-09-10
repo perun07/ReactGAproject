@@ -116,9 +116,8 @@ class Locations extends Component {
     render(){
         return (
             <div>
-                <h1>Travel Locations</h1>
+                <h1>PTL's Travel Locations and Blog</h1>
                 <AddLocation createLocation = {this.createLocation}/>
-                
                 <LocationsList locations={this.state.locations} deleteLocation={this.deleteLocation} updateLocations ={this.updateLocations}/>
             </div>
         )
