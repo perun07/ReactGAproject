@@ -1,3 +1,9 @@
+
+//heroku deploy only
+require('dotenv').config()
+// const connectionString = process.env.MONGODB_URI;
+//heroku deploy
+
 const express        = require('express');
 const app            = express();
 const bodyParser     = require('body-parser');
@@ -32,7 +38,8 @@ const corsOptions = {
 
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000'
+  origin: 'http://localhost:3000',
+  secret:process.env.SECRET
 }
 ));
 
@@ -47,7 +54,11 @@ const locationsController = require('./controllers/locationsController');
 const articlesController = require('./controllers/articlesController');
 const usersController = require('./controllers/usersController');
 
-
+//heruku deploy
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+// mongoose.connection.once('open', () => {
+//     console.log('connected to mongo');
+// })
 
 app.use('/api/v1/locations', locationsController);
 app.use('/api/v1/article', articlesController);

@@ -30,7 +30,7 @@ class AddLocation extends Component {
             <Card body inverse color="warning">
             <Container>
             <Form onSubmit={this.handleSubmit}>
-                <h2>Add Your Location To Blog About</h2>
+                <h2>Add Your Location and Post Blog</h2>
                 <FormGroup row>
                 <Label for= "city">City:</Label>
                 <Input type = "text" name = "city" placeholder="city" onChange = {this.handleChange}/>
