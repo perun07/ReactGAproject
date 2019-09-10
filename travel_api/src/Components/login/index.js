@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Register from './Register/Register'
+import { Card, CardGroup, Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 class Login extends Component {
     constructor(){
@@ -23,7 +26,10 @@ class Login extends Component {
 
     render(){
         return(
-            <div><h1>Register as a new User</h1>
+            <div>
+                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                <h1>Register as a new User</h1>
+                </Card>
             
         {/* <form onSubmit={this.handleSubmit}>
             <input type='text' name='username' placeholder='username' value = {this.state.username} onChange={this.handleChange}/>

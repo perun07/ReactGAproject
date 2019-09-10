@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import LocationsList from './LocationList'
 import AddLocation from "./AddLocation"
+import { Card, CardGroup, Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 class Locations extends Component {
@@ -116,7 +118,9 @@ class Locations extends Component {
     render(){
         return (
             <div>
+                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                 <h1>PTL's Travel Locations and Blog</h1>
+                </Card>
                 <AddLocation createLocation = {this.createLocation}/>
                 <LocationsList locations={this.state.locations} deleteLocation={this.deleteLocation} updateLocations ={this.updateLocations}/>
             </div>
