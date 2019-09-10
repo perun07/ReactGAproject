@@ -29,7 +29,6 @@ console.log(req.body, "this is req.body");
                 code: 201,
             },
             data: createdUser
-            
         })
     } catch(err){
         res.send(err)
