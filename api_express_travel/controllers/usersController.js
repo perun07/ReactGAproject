@@ -1,26 +1,32 @@
 const express = require('express')
 const router = express.Router()
 const Users = require('../models/users')
-const bcrypt = require ('bcryptjs')
+const bcrypt = require('bcryptjs')
 
 
 router.post("/register", async (req,res)=>{
+console.log(req.body, "this is req.body");
 
     const password = req.body.password
-
     const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     console.log(hashedPassword);
     req.body.password = hashedPassword
 
     try{
-        const createdUser = await user.create(req.body)
+        const createdUser = await Users.create(req.body)
+            
+        //     , (error, createdUser)=>{
+        //     res.status(201).json({status:201, message:"createdUser"})
+        // })
+
+        
         console.log(createdUser, 'created user');
         req.session.userId = createdUser._id;
         req.session.username = createdUser.username;
         req.session.logged = true;
         res.json({
             status:{
-                code: 201
+                code: 201,
             },
             data: createdUser
         })
@@ -32,7 +38,7 @@ router.post("/register", async (req,res)=>{
 router.post('/login', async (req, res) => {
     try{
         const foundUser = await User.findOne({username:req.body.username})
-        console.log(foundUser, "we found you, user");
+        // console.log(foundUser, "we found you, user");
         if(foundUser){
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
                 req.session.userId = foundUser._id

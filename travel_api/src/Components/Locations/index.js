@@ -88,22 +88,38 @@ class Locations extends Component {
         }
     }
 
-    // updateLocations = async()=>{
-    //     try{
-    //         const updateLocation = await fetch(`http://localhost:9000/api/v1/locations/${id}`, {
-    //             method: "PUT",
-    //             body: JSON.stringify(formData),
+    updateLocations = async (id, formData) => {
+        const updatedLocations = await fetch(`http://localhost:9000/api/v1/locations/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(formData),
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
-    //         })
-    //     }
-    // }
+        const parsedResponse = await updatedLocations.json();
+        if(parsedResponse.status.code === 200){
+            this.setState({
+                locations: this.state.locations.map(function(location){
+                    if(location._id === id){
+                        return parsedResponse.data
+                    }else{
+                        return location
+                    }
+                })
+            })
+        }
+        console.log(parsedResponse)
+    }
+
     render(){
         return (
             <div>
                 <h1>Travel Locations</h1>
                 <AddLocation createLocation = {this.createLocation}/>
-                <LocationsList locations={this.state.locations} deleteLocation={this.deleteLocation}/>
                 
+                <LocationsList locations={this.state.locations} deleteLocation={this.deleteLocation} updateLocations ={this.updateLocations}/>
             </div>
         )
     }

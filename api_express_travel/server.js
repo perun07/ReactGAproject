@@ -51,7 +51,7 @@ const usersController = require('./controllers/usersController');
 
 app.use('/api/v1/locations', locationsController);
 app.use('/api/v1/article', articlesController);
-app.use('/users', usersController)
+app.use('/api/v1/users', usersController)
 
 app.listen(process.env.PORT || 9000, () => {
   console.log('listening on port 9000');

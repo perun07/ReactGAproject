@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       loggedIn:false,
       username: null, 
+      password: null,
+      email: null,
       terms:'',
       items: [],
     }
@@ -49,18 +51,24 @@ class App extends Component {
   handleRegister = async (formData) =>{
     console.log("Registered");
     console.log(formData);
-    const registerResponse = await fetch("http://localhost:9000/users/register" ,{
-      method: "POST",
+    //check
+    const registerResponse = await fetch("http://localhost:9000/api/v1/users/register" ,{      
+    method: "POST",
       body: JSON.stringify(formData),
       credentials: "include",
       headers: {
-        "Content-Type": "applications/json"
+        "Content-Type": "application/json"
       }
+      //check
     })
       const parsedResponse = await registerResponse.json()
       console.log(parsedResponse)
       if(parsedResponse.status.code === 201){
         console.log('Successful Registration');
+        this.setState({
+          loggedIn: true,
+          username: parsedResponse.data.username
+        })
         
       }
     }

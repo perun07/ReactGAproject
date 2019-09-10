@@ -17,9 +17,10 @@ class Register extends Component {
         console.log(this.state);
         
     }
+
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log("submitted the form");
+        // console.log("submitted the form");
         this.props.handleRegister(this.state)
         
     }

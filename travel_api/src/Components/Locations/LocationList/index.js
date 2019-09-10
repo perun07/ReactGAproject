@@ -1,4 +1,5 @@
 import React from 'react'
+import EditLocationModal from './EditLocationModal/EditLocationModal'
 
 function LocationsList(props){
     const locations = props.locations.map(function(location){
@@ -8,6 +9,7 @@ function LocationsList(props){
             <button onClick={()=>{
                 props.deleteLocation(location._id)
             }}>Delete</button>
+            <EditLocationModal id={location._id} updateLocations = {props.updateLocations} />
             </li>
         )
     })
